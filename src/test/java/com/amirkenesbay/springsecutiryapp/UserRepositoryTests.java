@@ -1,6 +1,7 @@
 package com.amirkenesbay.springsecutiryapp;
 
 import com.amirkenesbay.springsecutiryapp.entity.User;
+import com.amirkenesbay.springsecutiryapp.repository.UserRepository;
 import com.amirkenesbay.springsecutiryapp.service.UserService;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -14,21 +15,23 @@ import org.springframework.test.annotation.Rollback;
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @Rollback(value = false)
 public class UserRepositoryTests {
-    @Autowired
-    private UserService userService;
+
 
     @Autowired
     private TestEntityManager entityManager;
+
+    @Autowired
+    private UserRepository userRepository;
 
     @Test
     public void testCreateUser(){
         User user = new User();
         user.setEmail("amirkenesbay@gmail.com");
-        user.setPassword("Supa1807");
+        user.setPassword("amirkenesbay1807");
         user.setFirstName("Amir");
         user.setLastName("Kenesbay");
 
-        User savedUser = userService.saveUser(user);
+        User savedUser = userRepository.save(user);
         User existUser = entityManager.find(User.class, savedUser.getId());
         Assertions.assertThat(existUser.getEmail()).isEqualTo(user.getEmail());
     }
