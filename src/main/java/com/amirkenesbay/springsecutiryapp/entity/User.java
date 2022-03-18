@@ -23,5 +23,4 @@ public class User {
 
     @Column(nullable = false, length = 20)
     private String lastName;
-
 }
