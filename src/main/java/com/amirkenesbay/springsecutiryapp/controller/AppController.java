@@ -29,4 +29,9 @@ public class AppController {
         service.saveUser(user);
         return "register_success";
     }
+
+    @GetMapping("/list_users")
+    public String viewUserList(){
+        return "users";
+    }
 }

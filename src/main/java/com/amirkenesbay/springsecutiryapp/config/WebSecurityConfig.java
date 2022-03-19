@@ -17,6 +17,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
     @Autowired
     private DataSource dataSource;
 
@@ -51,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .usernameParameter("email")
-                .defaultSuccessUrl("list_users")
+                .defaultSuccessUrl("/list_users")
                 .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/").permitAll();
